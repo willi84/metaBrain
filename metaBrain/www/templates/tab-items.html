@@ -1,0 +1,32 @@
+<ion-view view-title="Look for Projects">
+
+  <ion-content>
+  <div class="list list-inset">
+  <label class="item item-input">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" placeholder="Search" ng-model="searchText">
+  </label>
+</div>
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar  Xitem-icon-left item-icon-right" ng-repeat="item in items | filter:searchText" type="item-text-wrap" href="#/tab/items/{{item.ID}}">
+        <img ng-if="item.img_url != ''" class="item-img" ng-src="img/{{item.img_url}}.png">
+        <h2>{{item.title}} <i ng-if="(item.status).indexOf('active') > -1" class="active-label ion-android-radio-button-on"> {{item.status}} </i></h2>
+        <p>{{item.description_en}}</p>
+        <p>{{item.url}}</p>
+        <p class="Xitem-icon-left button-block" style="clear:both">
+          <i ng-if="(item.kind).indexOf('website') > -1" class="kind-label ion-laptop"> Website </i>
+          <i ng-if="(item.kind).indexOf('website') > -1" class="kind-label ion-iphone"> App </i>
+          <i ng-if="(item.kind).indexOf('website') > -1" class="kind-label ion-document"> Wiki </i>
+          <i ng-if="(item.kind).indexOf('website') > -1" class="kind-label ion-social-facebook"> Facebook </i></p>
+          <p ng-if="item.categories"><i class="category-label ion-pricetag"> </i>  {{item.categories}}</p>
+
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(item)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
